@@ -8,7 +8,7 @@ var index=0;
     
     el = document.getElementById('myfeedback');
     if (index==3) {el.innerHTML = '<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> תשובה נכונה, יפה מאוד.'}
-    else if ((index>0) & (index<3))  {el.innerHTML ='<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> תשובה נכונה באופן חלקי.'}
+    else if ((index>0) && (index<3))  {el.innerHTML ='<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> תשובה נכונה באופן חלקי.'}
     else {<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> תשובה שגויה.}
   }
   
