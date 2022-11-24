@@ -291,8 +291,3 @@ document.getElementById(bbb.id).onclick =function(){headbtnf();board.update()};
 </div>
   </div>
   
-
-<div style="display:none;">
-[[input:carbon]] [[validation:carbon]]
-[[input:double]] [[validation:double]]
-</div><p></p>
