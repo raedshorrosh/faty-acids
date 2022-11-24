@@ -29,7 +29,7 @@ var board = JXG.JSXGraph.initBoard(divid, {
 var answered=false;
   var fdbk='';
 
-  board.create('text',[0,2,function(){return fdbk}],{fontsize:18,fixed=true});
+  board.create('text',[0,2,function(){return fdbk}],{fontsize:18,fixed:true});
 
   const low = 5,
   high = low+2,
