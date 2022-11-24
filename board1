@@ -14,7 +14,7 @@
 //board
 var board = JXG.JSXGraph.initBoard(divid, {
   boundingbox:[-15, 12, {#xmax#}, -1],
-   axis: true,
+   axis: false,
   showCopyright: false,
   showNavigation: false,
   keepaspectratio: false,
