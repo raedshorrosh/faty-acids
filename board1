@@ -8,8 +8,9 @@
  </script> 
 
 <div width="800" align="center"><b>
-[[jsxgraph  width="800px" height="300px"  input-ref-carbon='carbonRef'  input-ref-double='doubleRef']] JXG.Options.text.cssDefaultStyle += 'direction:rtl; font-family:Arial;';
-  JXG.Options.text.highlightCssDefaultStyle = 'direction:ltr';
+[[jsxgraph  width="800px" height="300px"  input-ref-carbon='carbonRef'  input-ref-double='doubleRef']] 
+JXG.Options.text.cssDefaultStyle += 'direction:rtl; font-family:Arial;';
+JXG.Options.text.highlightCssDefaultStyle +='direction:rtl; font-family:Arial;';
 
 //board
 var board = JXG.JSXGraph.initBoard(divid, {
