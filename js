@@ -1,53 +1,18 @@
 <script>
-function managesectios(e) {
-  if (
-    (document.getElementsByClassName('partA1').length > 0) &
-    (document.getElementsByClassName('partA2').length > 0) &
-    (document.getElementsByClassName('partA3').length > 0) &
-    (document.getElementsByClassName('partA4').length > 0) &
-    (document.getElementsByClassName('partA5').length > 0) &
-    (document.getElementsByClassName('partA6').length > 0) &
-    (document.getElementsByClassName('partA7').length > 0) &
-    (document.getElementsByClassName('partA8').length > 0) &
-    (document.getElementsByClassName('partA9').length > 0) &
-    (document.getElementsByClassName('partA10').length > 0) &
-    (document.getElementsByClassName('partA11').length > 0) &
-    (document.getElementsByClassName('partA12').length > 0)
-  ) {
+function managesections(e) {
+var index=0;
+    if (document.getElementsByClassName('partA1').length > 0) {index++};
+    if (document.getElementsByClassName('partA2').length > 0) {index++};
+    if (document.getElementsByClassName('partA3').length > 0) {index++};
+      
     
-    el = document.getElementById('ballance');
-    el.style.display = 'block';
-  }
- if (
-    (document.getElementsByClassName('partB1').length > 0) &
-    (document.getElementsByClassName('partB2').length > 0) &
-    (document.getElementsByClassName('partB3').length > 0) &
-    (document.getElementsByClassName('partB4').length > 0) 
-   
-  ) {
-    el = document.getElementById('KC');
-    el.style.display = 'block';
-  }
-if (
-    (document.getElementsByClassName('partD1').length > 0) &
-    (document.getElementsByClassName('partD2').length > 0) 
-   
-  ) {
-    el = document.getElementById('disturbance');
-    el.style.display = 'block';
-  }
-  
-  if (
-    (document.getElementsByClassName('partF1').length > 0) &
-    (document.getElementsByClassName('partF2').length > 0) &
-    (document.getElementsByClassName('partF3').length > 0)
-   
-  ) {
-    el = document.getElementById('final');
-    el.style.display = 'block';
+    el = document.getElementById('myfeedback');
+    if (index==3) {el.innerHTML = '<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> תשובה נכונה, יפה מאוד.'}
+    else if ((index>0) & (index<3))  {el.innerHTML ='<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> תשובה נכונה באופן חלקי.'}
+    else {<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> תשובה שגויה.}
   }
   
 }
-document.addEventListener('DOMContentLoaded', managesectios);
+document.addEventListener('DOMContentLoaded', managesections);
 
 </script>
