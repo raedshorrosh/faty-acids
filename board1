@@ -31,7 +31,7 @@ var answered=false;
   var fdbk='';
 
   board.create('text',[0,2,function(){return fdbk}],{fontsize:18,fixed:true});
-
+var score=0;
   const low = 5,
   high = low+2,
   left = -13;
@@ -242,17 +242,13 @@ if (answered) {return};
   D.value=JSON.stringify(Double);
 }
  
-checkAnswer[{#rqm#}] =function() {
+checkAnswer[{#rqm#}] =function(points) {
 answered=true;
-  var index=0;
-  if (isless(0,document.getElementsByClassName('partA1').length)) {index++};
-  if (isless(0,document.getElementsByClassName('partA2').length)) {index++};
-  if (isless(0,document.getElementsByClassName('partA3').length)) {index++};
-  
-    ;
-    if (index==3)
+  score=score+points;
+
+if (score==3)
   {fdbk = '<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> תשובה נכונה, יפה מאוד.'}
-    else if (iand(isless(0,index),isless(index,3)))
+    else if (iand(isless(0,score),isless(score,3)))
   {fdbk ='<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> תשובה נכונה באופן חלקי.'}
    else {fdbk ='<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> תשובה שגויה.'};
   board.update();
