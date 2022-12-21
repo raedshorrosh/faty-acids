@@ -280,11 +280,11 @@ document.getElementById(bbb.id).onclick =function(){headbtnf();board.update()};
 
 <div width="800" align="center">
 <div class="btn-group" role="group" aria-label="molecule building buttons">
-  <button id="cx" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="מחיקה"><img src="{@ximg@}" width="50" height="50"></button>
-  <button id="cc" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="הוספת קשר יחיד"><img src="{@ccimg@}" width="100" height="50"></button>
-  <button id="cis" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="הוספת קשר כפול"><img src="{@cisimg@}" width="100" height="50"></button>
-  <button id="trans" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="הוספת קשר כפול"><img src="{@transimg@}" width="100" height="50"></button>
-  <button id="carb" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="הוספת קבוצה קרבוקסילית"><img src="{@carbox@}" width="80" height="80"></button>
+  <button id="cx" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="حذف"><img src="{@ximg@}" width="50" height="50"></button>
+  <button id="cc" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="إضافة رابط فردي"><img src="{@ccimg@}" width="100" height="50"></button>
+  <button id="cis" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="إضافة رابط زوجي"><img src="{@cisimg@}" width="100" height="50"></button>
+  <button id="trans" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="إضافة رابط زوجي"><img src="{@transimg@}" width="100" height="50"></button>
+  <button id="carb" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="إضافة مجموعة الكربوكسيل"><img src="{@carbox@}" width="80" height="80"></button>
 </div>
   </div>
   
