@@ -54,7 +54,7 @@ if (D.value !='') {Double=JSON.parse(D.value);}
 
 var curve = board.create('curve', [x, y],{strokeColor: 'red',strokewidth:3});
 
-if ({#showLength#}=='yes'){  var t1 = board.create('text',[15,0,function(){return " طول السلسسلة: " +x.length}]);}
+if ({#showLength#}=='yes'){  var t1 = board.create('text',[15,0,function(){return " طول السلسسلة : " +x.length}]);}
 
 var addpoint = function() {
 //if ((imgup.getAttribute('visible'))||(imgdown.getAttribute('visible'))) {return}
@@ -249,7 +249,7 @@ if (points==1){score++}
 if (score==3)
   {fdbk = '<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> إجابة صحيحة، كل الإحترام.'};
   if ((score==2)||(score==1))
-  {fdbk ='<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> إجابة صحيحة بشكل جزئيי.'};
+  {fdbk ='<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> إجابة صحيحة بشكل جزئي.'};
    if (score==0) {fdbk ='<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> إجابة خاطئة.'};
   board.update();
 }
