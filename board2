@@ -259,7 +259,7 @@ if (score==3)
 //var bbb=document.getElementById("cx");bbb.id={#rqm#}+"cx";
 //document.getElementById(bbb.id).onclick =function(){xbtnf();board.update()};
 
-stack_js.register_external_button_listener("cc").then(ccbtnf());
+stack_js.register_external_button_listener("cc",ccbtnf);
 //var bbb=document.getElementById("cc");bbb.id={#rqm#}+"cc";
 //document.getElementById(bbb.id).onclick =function(){ccbtnf();board.update()};
 
