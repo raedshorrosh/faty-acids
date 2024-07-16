@@ -1,8 +1,6 @@
- <script>
-  function isless(x,y) {return (x<y)};
-</script>
 
   [[jsxgraph  width="800px" height="300px" ]]
+   function isless(x,y) {return (x<y)};
   JXG.Options.text.cssDefaultStyle = 'direction:ltr; font-family:Arial;';
   JXG.Options.text.highlightCssDefaultStyle = 'direction:ltr';
 
