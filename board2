@@ -54,7 +54,7 @@ if ({#showLength#}=='yes'){  var t1 = board.create('text',[15,0,function(){retur
 
 var addpoint = function() {
 //if ((imgup.getAttribute('visible'))||(imgdown.getAttribute('visible'))) {return}
-if  (D.value==''){ D.value=JSON.stringify(Double);}
+if  (D.value==''){ D.value=JSON.stringify(Double);D.dispatchEvent(new Event('change'));}
   var temp = (y[y.length - 1] == low) ? high : low;
   var temp2 = x[x.length - 1] + 1;
   y.push(temp);
@@ -184,12 +184,14 @@ var translen=trans.length;
 var rmvHead=false;
  removepoint();
 Carbon.value=x.length;
+Carbon.dispatchEvent(new Event('change'));
 if (x.length ==cNo) {rmvHead=true};
-//if (x.length !=cNo){Carbon.value=x.length} else {rmvHead=true};
+//if (x.length !=cNo){Carbon.value=x.length;Carbon.dispatchEvent(new Event('change'));} else {rmvHead=true};
 
 if ((cislen!=cis.length) || (translen!=trans.length) || rmvHead){
      Double.pop();
      D.value=JSON.stringify(Double);
+     D.dispatchEvent(new Event('change'));
   }
  
 }
@@ -200,8 +202,8 @@ console.log('inside cc');
 if (answered) {return};
 if ((imgup.getAttribute('visible'))||(imgdown.getAttribute('visible'))) {return};
 addpoint();console.log('point is added');
-if (Carbon.value=='') {Carbon.value=1};
-Carbon.value++;
+if (Carbon.value=='') {Carbon.value=1;Carbon.dispatchEvent(new Event('change'));};
+Carbon.value++;Carbon.dispatchEvent(new Event('change'));
 }  
 
 
@@ -212,9 +214,9 @@ if ((imgup.getAttribute('visible'))||(imgdown.getAttribute('visible'))) {return}
 addcis();
 
    if (Carbon.value=='') {Carbon.value=1};
-   Carbon.value++;
+   Carbon.value++;Carbon.dispatchEvent(new Event('change'));
    Double.push([Carbon.value-1,'cis']);
-   D.value=JSON.stringify(Double);
+   D.value=JSON.stringify(Double);D.dispatchEvent(new Event('change'));
 }
 
   
@@ -223,20 +225,22 @@ addcis();
 if (answered) {return};
 if ((imgup.getAttribute('visible'))||(imgdown.getAttribute('visible'))) {return false};
 addtrans();
-  if (Carbon.value=='') {Carbon.value=1};
-   Carbon.value++;
+  if (Carbon.value=='') {Carbon.value=1;Carbon.dispatchEvent(new Event('change'));};
+   Carbon.value++;Carbon.dispatchEvent(new Event('change'));
    Double.push([Carbon.value-1,'trans']);
    D.value=JSON.stringify(Double);
+D.dispatchEvent(new Event('change'));
 }
   
 //-------head--------
 var headbtnf= function(){
 if (answered) {return};
   if ((imgup.getAttribute('visible'))||(imgdown.getAttribute('visible'))) {return}
-  addpoint();Carbon.value=x.length;
+  addpoint();Carbon.value=x.length;Carbon.dispatchEvent(new Event('change'));
   addhead();
   Double.push(['COOH']);
   D.value=JSON.stringify(Double);
+D.dispatchEvent(new Event('change'));
 }
  
 var checkAnswer =function(points) {
