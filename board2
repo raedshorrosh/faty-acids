@@ -1,7 +1,5 @@
 
-<script type="text/javascript">
-   var checkAnswer=[];
- </script> 
+
 
 <div width="800" align="center"><b>
 [[jsxgraph  width="800px" height="300px"  input-ref-carbon='carbonRef'  input-ref-double='doubleRef']] 
@@ -240,7 +238,7 @@ if (answered) {return};
   D.value=JSON.stringify(Double);
 }
  
-var checkAnswer[{#rqm#}] =function(points) {
+var checkAnswer =function(points) {
 answered=true;
 if (points==1){score++}
   console.log(score);
