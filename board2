@@ -196,9 +196,10 @@ if ((cislen!=cis.length) || (translen!=trans.length) || rmvHead){
 
 //-------C-C--------  
 var ccbtnf=function(){
+console.log('inside cc');
 if (answered) {return};
 if ((imgup.getAttribute('visible'))||(imgdown.getAttribute('visible'))) {return};
-addpoint();
+addpoint();console.log('point is added');
 if (Carbon.value=='') {Carbon.value=1};
 Carbon.value++;
 }  
