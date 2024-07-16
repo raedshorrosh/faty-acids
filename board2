@@ -255,32 +255,39 @@ if (score==3)
 //headbtnBS.rendNode.style.cursor='pointer';
 //headbtnBS.rendNode.style.outline= "1px solid transparent";
 
+register_external_button_listener("cx",xbtnf());
+//var bbb=document.getElementById("cx");bbb.id={#rqm#}+"cx";
+//document.getElementById(bbb.id).onclick =function(){xbtnf();board.update()};
 
-var bbb=document.getElementById("cx");bbb.id={#rqm#}+"cx";
-document.getElementById(bbb.id).onclick =function(){xbtnf();board.update()};
+register_external_button_listener("cc",ccbtnf());
+//var bbb=document.getElementById("cc");bbb.id={#rqm#}+"cc";
+//document.getElementById(bbb.id).onclick =function(){ccbtnf();board.update()};
 
-var bbb=document.getElementById("cc");bbb.id={#rqm#}+"cc";
-document.getElementById(bbb.id).onclick =function(){ccbtnf();board.update()};
+register_external_button_listener("cis",cisbtnf());
+//var bbb=document.getElementById("cis");bbb.id={#rqm#}+"cis";
+//document.getElementById(bbb.id).onclick =function(){cisbtnf();board.update()};
 
-var bbb=document.getElementById("cis");bbb.id={#rqm#}+"cis";
-document.getElementById(bbb.id).onclick =function(){cisbtnf();board.update()};
-var bbb=document.getElementById("trans");bbb.id={#rqm#}+"trans";
-document.getElementById(bbb.id).onclick =function(){transbtnf();board.update()};
-var bbb=document.getElementById("carb");bbb.id={#rqm#}+"carb";
-document.getElementById(bbb.id).onclick =function(){headbtnf();board.update()};
+register_external_button_listener("trans",transbtnf());
+//var bbb=document.getElementById("trans");bbb.id={#rqm#}+"trans";
+//document.getElementById(bbb.id).onclick =function(){transbtnf();board.update()};
+
+register_external_button_listener("carb",headbtnf());
+//var bbb=document.getElementById("carb");bbb.id={#rqm#}+"carb";
+//document.getElementById(bbb.id).onclick =function(){headbtnf();board.update()};
 
 
 [[/jsxgraph]]
   </b></div><b>
     </b><p></p>
-
+<span id="btn">0<\span>
 <div width="800" align="center">
 <div class="btn-group" role="group" aria-label="molecule building buttons">
   <button id="cx" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="מחיקה"><img src="{@ximg@}" width="50" height="50"></button>
-  <button id="cc" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="הוספת קשר יחיד"><img src="{@ccimg@}" width="100" height="50"></button>
+  <button id="cc" onclick="ccClicked()" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="הוספת קשר יחיד"><img src="{@ccimg@}" width="100" height="50"></button>
   <button id="cis" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="הוספת קשר כפול"><img src="{@cisimg@}" width="100" height="50"></button>
   <button id="trans" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="הוספת קשר כפול"><img src="{@transimg@}" width="100" height="50"></button>
   <button id="carb" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="הוספת קבוצה קרבוקסילית"><img src="{@carbox@}" width="80" height="80"></button>
 </div>
   </div>
+
   
