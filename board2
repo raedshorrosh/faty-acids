@@ -296,7 +296,6 @@ stack_js.register_external_button_listener("carb",headbtnf);
 [[/jsxgraph]]
   </b></div><b>
     </b><p></p>
-<span id="btn">0<\span>
 <div width="800" align="center">
 <div class="btn-group" role="group" aria-label="molecule building buttons">
   <button id="cx" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="מחיקה"><img src="{@ximg@}" width="50" height="50"></button>
