@@ -255,23 +255,23 @@ if (score==3)
 //headbtnBS.rendNode.style.cursor='pointer';
 //headbtnBS.rendNode.style.outline= "1px solid transparent";
 
-stack_js.register_external_button_listener("cx",xbtnf());
+//stack_js.register_external_button_listener("cx",xbtnf());
 //var bbb=document.getElementById("cx");bbb.id={#rqm#}+"cx";
 //document.getElementById(bbb.id).onclick =function(){xbtnf();board.update()};
 
-stack_js.register_external_button_listener("cc",ccbtnf());
+stack_js.register_external_button_listener("cc").then(ccbtnf());
 //var bbb=document.getElementById("cc");bbb.id={#rqm#}+"cc";
 //document.getElementById(bbb.id).onclick =function(){ccbtnf();board.update()};
 
-stack_js.register_external_button_listener("cis",cisbtnf());
+//stack_js.register_external_button_listener("cis",cisbtnf());
 //var bbb=document.getElementById("cis");bbb.id={#rqm#}+"cis";
 //document.getElementById(bbb.id).onclick =function(){cisbtnf();board.update()};
 
-stack_js.register_external_button_listener("trans",transbtnf());
+//stack_js.register_external_button_listener("trans",transbtnf());
 //var bbb=document.getElementById("trans");bbb.id={#rqm#}+"trans";
 //document.getElementById(bbb.id).onclick =function(){transbtnf();board.update()};
 
-stack_js.register_external_button_listener("carb",headbtnf());
+//stack_js.register_external_button_listener("carb",headbtnf());
 //var bbb=document.getElementById("carb");bbb.id={#rqm#}+"carb";
 //document.getElementById(bbb.id).onclick =function(){headbtnf();board.update()};
 
