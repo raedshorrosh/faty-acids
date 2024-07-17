@@ -370,7 +370,7 @@ setTimeout(function(){addpoint();Carbon[cur].value=x[cur].length;Carbon[cur].dis
   board.update();
 }
  
-var checkAnswer[{#rqm#}] =function(indx, mrk) {
+var checkAnswer=function(indx, mrk) {
 Marks[indx]=Marks[indx]+mrk;
 answered=true;
 board.update();
