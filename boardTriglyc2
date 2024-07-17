@@ -1,0 +1,444 @@
+<div width="800">
+  [[jsxgraph  width="800px" height="600px"  input-ref-carbon1='carbon1Ref'  input-ref-carbon2='carbon2Ref' input-ref-carbon3='carbon3Ref'  input-ref-double1='double1Ref' input-ref-double2='double2Ref' input-ref-double3='double3Ref']] 
+
+JXG.Options.text.cssDefaultStyle = 'direction:ltr; font-family:Arial;';
+JXG.Options.text.highlightCssDefaultStyle = 'direction:ltr';
+   function isless(x,y) {return (x<y)};
+   function round(num, decimalPlaces = 0) {
+    var p = Math.pow(10, decimalPlaces);
+    var n = (num * p) * (1 + Number.EPSILON);
+    return Math.round(n) / p;
+}
+function sound(src) {
+  this.sound = document.createElement("audio");
+  this.sound.src = src;
+  this.sound.setAttribute("preload", "metadata");
+  this.sound.setAttribute("controls", "none");
+  this.sound.style.display = "none";
+  document.body.appendChild(this.sound);
+  this.play = function(){
+    this.sound.play();
+  }
+  this.stop = function(){
+    this.sound.pause();
+  }
+}
+//board
+var board = JXG.JSXGraph.initBoard(divid, {
+  boundingbox:[-15, 25, {#xmax#}, -1],
+   axis: false,
+  showCopyright: false,
+  showNavigation: false,
+  keepaspectratio: false,
+  pan:{enabled:false},
+  zoom:{enabled:false},
+  resize: {enabled:true}
+});
+  var findit = function(arr, item) {
+  for (var k = 0; isless(k ,arr.length); k++) { if (arr[k][0] == item) {return k} };
+  return -1;
+  }
+
+var answered=false;
+var cur=0;
+var left = -13;
+var low=[],high=[],Marks=[0,0,0],Marktxt=['','',''];
+
+low[0] =19; low[1]=10.5 ;low[2]=2;
+high[0] = low[0]+2;high[1] = low[1]+2;high[2] = low[2]+2;
+  
+var cMark={#cMark#},wMark={#wMark#};
+var x=[],y=[];
+x[0]=[left];x[1]=[left];x[2]=[left];
+y[0]=[];y[1]=[];y[2]=[];
+
+var initial={#initial#};
+
+if (initial[0]=="low")  {y[0][0] = low[0]}  else {y[0][0] = high[0]};
+if (initial[1]=="low")  {y[1][0] = low[1]}  else {y[1][0] = high[1]};
+if (initial[2]=="low")  {y[2][0] = low[2]}  else {y[2][0] = high[2]};
+
+
+var imup={#img1#},trimg={#trimg#};
+
+var cis = [];
+cis[0]=[]; cis[1]=[];cis[2]=[];
+var  trans = [];
+trans[0]=[];trans[1]=[];trans[2]=[];
+var imgcup=[];
+imgcup[0]=[-1.2,4];imgcup[1]=[-1.2,4];imgcup[2]=[-1.2,4];
+var imgup=[];
+imgup[0] = board.create('image', [imup, [function(){return imgcup[0][0]},function(){return imgcup[0][1] }], [1.58,5]],{visible:false});
+imgup[1] = board.create('image', [imup, [function(){return imgcup[1][0]},function(){return imgcup[1][1] }], [1.58,5]],{visible:false});
+imgup[2] = board.create('image', [imup, [function(){return imgcup[2][0]},function(){return imgcup[2][1] }], [1.58,5]],{visible:false});
+
+
+var imgtri= board.create('image', [trimg, [15,1.3], [2.7,18]],{visible:true, fixed:true});
+
+var Double=[[],[],[]],Carbon=[],D=[];
+var hyd=[];
+  hyd[0]=board.create('text',[13.9,low[0]-1.45,'H'],{fontSize: 36, color:'red',anchorY:'bottom',anchorX:'left',fixed:true,visible:true});
+  hyd[1]=board.create('text',[13.9,low[1]-1.45,'H'],{fontSize: 36, color:'red',anchorY:'bottom',anchorX:'left',fixed:true,visible:true});
+  hyd[2]=board.create('text',[13.9,low[2]-1.45,'H'],{fontSize: 36, color:'red',anchorY:'bottom',anchorX:'left',fixed:true,visible:true});
+  
+ 
+Carbon[0]=document.getElementById(carbon1Ref);
+Carbon[1]=document.getElementById(carbon2Ref);
+Carbon[2]=document.getElementById(carbon3Ref);
+D[0]=document.getElementById(double1Ref);
+D[1]=document.getElementById(double2Ref);
+D[2]=document.getElementById(double3Ref);
+  if (D[0].value !='') {Double[0]=JSON.parse(D[0].value);}
+  if (D[1].value !='') {Double[1]=JSON.parse(D[1].value);}
+  if (D[2].value !='') {Double[2]=JSON.parse(D[2].value);}
+var curve=[];
+ curve[0] = board.create('curve', [x[0], y[0]],{strokeColor: 'red',strokewidth:3});
+ curve[1] = board.create('curve', [x[1], y[1]],{strokeColor: 'red',strokewidth:3});
+ curve[2] = board.create('curve', [x[2], y[2]],{strokeColor: 'red',strokewidth:3});
+
+
+if ({#showLength#}=='yes'){  var t1 = board.create('text',[15,0,function(){return " אורך השרשרת: " +x[cur].length}]);}
+
+var MarkTxt0 = board.create('text', [function(){return (x[0][0]-1.5)},low[0], function() {
+  if (!answered) return '';
+  if (Marks[0] == 2)  return {#cMark#}
+else if (isless(0,Marks[0]) ) return {#pMark#}
+else 
+  return {#wMark#}
+}]);
+
+var MarkTxt1 = board.create('text', [function(){return x[1][0]-1.5}, low[1], function() {
+  if (!answered) return '';
+  if (Marks[1] == 2)  return {#cMark #}
+else if (isless(0,Marks[1]) ) return {#pMark#}
+else 
+  return {#wMark#}
+}]);
+
+var MarkTxt2 = board.create('text',[ function(){return x[2][0]-1.5}, low[2], function() {
+  if (!answered) return '';
+  if (Marks[2] == 2)  return {#cMark #}
+else if (isless(0,Marks[2]) ) return {#pMark#}
+else 
+  return {#wMark#}
+}]);
+board.update();
+
+
+var addpoint = function() {
+if  (D[cur].value==''){ D[cur].value=JSON.stringify(Double[cur]);}
+  var temp = (y[cur][y[cur].length - 1] == low[cur]) ? high[cur] : low[cur];
+  var temp2 = x[cur][x[cur].length - 1] + 1;
+  y[cur].push(temp);
+  x[cur].push(temp2);
+}
+
+var removepoint = function() {
+if (imgup[cur].getAttribute('visible')){imgup[cur].setAttribute({visible: false});hyd[cur].setAttribute({ visible: true});} else
+
+  if (y[cur].length == 1) {
+if ({#initial#}=='low')  {y[cur][0] = low[cur]} else { y[cur][0]=high[cur]};
+//    y[cur][0] = low;
+    x[cur][0] =left;
+		}
+		else {
+    var temp = y[cur][y[cur].length - 1]
+
+    if (y[cur][y[cur].length - 1] == y[cur][y[cur].length - 2]) {
+      var temp = cis[cur].pop();
+      board.removeObject(temp);
+	  } 
+	else if (trans[cur].length!=0) {if (trans[cur][trans[cur].length-1][0]==y[cur].length-1) {
+		var temp=trans[cur].pop();
+	  board.removeObject(temp);
+		}
+}
+
+   y[cur].pop();
+   x[cur].pop();
+}
+   
+}
+
+var addcis = function() {
+  var temp = y[cur][y[cur].length - 1];
+  var temp2 = x[cur][x[cur].length - 1] + (high[cur] - low[cur]);
+
+  y[cur].push(temp);
+  x[cur].push(temp2);
+  var last = x[cur].length - 1;
+  var tx = x[cur][last];
+  var dy = (y[cur][last] == high[cur]) ? -0.3 : 0.3;
+  var ty = (y[cur][last]) + dy;
+
+  var temp = board.create('segment', [
+    [tx, ty],
+    [tx - (high[cur] - low[cur]), ty]
+  ], {
+    fixed: true,
+		strokeColor: 'red'
+  });
+  cis[cur].push(temp);
+board.update();
+
+return true;
+
+}
+
+var addtrans = function() {
+  var last = y[cur].length - 1;
+  var ty = (y[cur][last] == low[cur]) ? high[cur] : low[cur];
+  var oldY = y[cur][last];
+  var tx = x[cur][last];
+  var slp = (y[cur][last] == low[cur]) ? 1 : -1;
+  var dy = 0.3;
+  y[cur].push(ty);
+  x[cur].push(tx + 1);
+
+  var seg = [];
+  if (slp == 1) {
+    seg = [
+      [tx + dy, oldY],
+      [tx + 1, ty - (high[cur]-low[cur]) * dy]
+    ]
+  } else {
+    seg = [
+      [tx, oldY - (high[cur]-low[cur]) * dy],
+      [tx + 1 - dy, ty]
+    ]
+  }
+
+  var t = board.create('segment', seg, {
+    fixed: true,
+    strokeColor: 'red'
+  });
+  trans[cur].push([last + 1, t]);
+console.log(trans[cur]);
+  board.update();
+  return true;
+}
+
+
+var addhead = function() {
+    hyd[cur].setAttribute({ visible: false});
+  var last = y[cur].length - 1;
+ var dif = 14 - x[cur][last];
+    for (let j = 0; isless(j, x[cur].length); j++) {
+      x[cur][j] = x[cur][j] + dif
+    }
+    if (cis[cur].length != 0) {
+      for (let j = 0; isless(j, cis[cur].length); j++) {
+        cis[cur][j].setPosition(JXG.COORDS_BY_USER, [dif, 0])
+      }
+      board.update();
+    }
+    if (trans[cur].length != 0) {
+      for (let j = 0; isless(j, trans[cur].length); j++) {
+        trans[cur][j][1].setPosition(JXG.COORDS_BY_USER, [dif, 0])
+      }
+      board.update();
+    }
+var cc=Carbon[cur].value,row;
+var ydiff;
+var temp=high[cur]-low[cur];
+if (y[cur][last] != high[cur])  {
+for (let i = 0; isless(i, cc); i++) {
+    y[cur][i]=(y[cur][i]==low[cur])? high[cur]:low[cur];
+  }
+    if (cis[cur].length != 0) {
+      for (let j = 0; isless(j, cis[cur].length); j++) {
+     let rrr=round((cis[cur][j].point1.coords.usrCoords[2]-low[cur]),2)
+       ydiff =(rrr==0.3) ? (temp-0.6):(0.6-temp);
+        cis[cur][j].setPosition(JXG.COORDS_BY_USER, [0, ydiff])
+      }
+      board.update();
+    }
+if (trans[cur].length != 0) {
+      for (let j = 0; isless(j, trans[cur].length); j++) {
+//--------------
+  board.removeObject( trans[cur][j][1]);
+  var lastt = trans[cur][j][0]-1;
+  var ty = (y[cur][lastt] == low[cur]) ? high[cur] : low[cur];
+  var oldY = y[cur][lastt];
+  var tx = x[cur][lastt];
+  var slp = (y[cur][lastt] == low[cur]) ? 1 : -1;
+  var dy = 0.3;
+  var seg = [];
+  if (slp == 1) {   seg = [    [tx + dy, oldY],     [tx + 1, ty - (high[cur]-low[cur]) * dy]   ]
+  } else {
+    seg = [  [tx, oldY - (high[cur]-low[cur]) * dy],   [tx + 1 - dy, ty]   ]
+  }
+  trans[cur][j][1] = board.create('segment', seg, {
+    fixed: true,
+    strokeColor: 'red'
+  });
+//--------------
+
+      }
+      board.update();
+    }
+}
+ 
+    imgup[cur].setAttribute({ visible: true});
+    imgcup[cur][0] = x[cur][last] - 0.6;
+    imgcup[cur][1] = y[cur][last] - 2;
+    board.update();
+   return true;
+}
+
+//draw what in the input fields
+for (let j=0;isless(j,3);j++){
+cur=j;
+if (Carbon[cur].value !='') {
+
+  for (let i = 1; isless(i, Carbon[cur].value); i++) { 
+    var row=findit(Double[cur],i);
+     if (row !=-1)  {if (Double[cur][row][1]=='cis') {addcis()} else {addtrans()}} else {addpoint()};
+     }
+if (Double[cur][Double[cur].length-1]=='COOC') {addhead()};
+board.update();  
+}
+}
+
+cur=0;
+  //-------X--------
+var xbtnf=function(){
+if (answered) {return};
+var cNo=Carbon[cur].value;
+var cislen=cis[cur].length;
+var translen=trans[cur].length;
+var rmvHead=false;
+ removepoint();
+Carbon[cur].value=x[cur].length;
+if (x[cur].length ==cNo) {rmvHead=true};
+//if (x[cur].length !=cNo){Carbon[cur].value=x.length} else {rmvHead=true};
+
+if ((cislen!=cis[cur].length) || (translen!=trans[cur].length) || rmvHead){
+     Double[cur].pop();
+     D[cur].value=JSON.stringify(Double[cur]);
+  }
+ 
+}
+
+//-------C-C--------  
+var ccbtnf=function(){
+if (answered) {return};
+if (imgup[cur].getAttribute('visible')) {return};
+addpoint();
+if (Carbon[cur].value=='') {Carbon[cur].value=1};
+Carbon[cur].value++;
+}  
+
+
+//-------cis--------
+var cisbtnf=  function(){
+if (answered) {return};
+if (imgup[cur].getAttribute('visible')) {return};
+addcis();
+
+   if (Carbon[cur].value=='') {Carbon[cur].value=1};
+   Carbon[cur].value++;
+   Double[cur].push([Carbon[cur].value-1,'cis']);
+   D[cur].value=JSON.stringify(Double[cur]);
+}
+
+  
+//-------trans--------
+ var  transbtnf=function(){
+if (answered) {return};
+if (imgup[cur].getAttribute('visible')) {return false};
+addtrans();
+  if (Carbon[cur].value=='') {Carbon[cur].value=1};
+   Carbon[cur].value++;
+   Double[cur].push([Carbon[cur].value-1,'trans']);
+   D[cur].value=JSON.stringify(Double[cur]);
+}
+  
+//-------head--------
+var headbtnf= function(){
+var mySound=new sound({#snd#});
+if (answered) {return};
+  if (imgup[cur].getAttribute('visible')) {return}
+  mySound.play();
+
+setTimeout(function(){addpoint();Carbon[cur].value=x[cur].length;addhead()},600);
+  Double[cur].push(['COOC']);
+  D[cur].value=JSON.stringify(Double[cur]);
+}
+ 
+checkAnswer[{#rqm#}] =function(indx, mrk) {
+Marks[indx]=Marks[indx]+mrk;
+answered=true;
+board.update();
+}
+
+//document.getElementById(BOARDID0+"_"+headbtnBS.id).style.cursor = "pointer";
+//headbtnBS.rendNode.setAttribute("style","cursor: pointer;");
+//headbtnBS.rendNode.style.cursor='pointer';
+//headbtnBS.rendNode.style.outline= "1px solid transparent";
+
+
+var bbb=document.getElementById("cx");bbb.id={#rqm#}+"cx";
+document.getElementById(bbb.id).onclick =function(){xbtnf();board.update()};
+
+var bbb=document.getElementById("cc");bbb.id={#rqm#}+"cc";
+document.getElementById(bbb.id).onclick =function(){ccbtnf();board.update()};
+
+var bbb=document.getElementById("cis");bbb.id={#rqm#}+"cis";
+document.getElementById(bbb.id).onclick =function(){cisbtnf();board.update()};
+var bbb=document.getElementById("trans");bbb.id={#rqm#}+"trans";
+document.getElementById(bbb.id).onclick =function(){transbtnf();board.update()};
+var bbb=document.getElementById("carb");bbb.id={#rqm#}+"carb";
+document.getElementById(bbb.id).onclick =function(){headbtnf();board.update()};
+
+var bbb=document.getElementById("o1");bbb.id={#rqm#}+"o1";
+document.getElementById(bbb.id).onclick =function(){cur=0};
+
+var bbb=document.getElementById("o2");bbb.id={#rqm#}+"o2";
+document.getElementById(bbb.id).onclick =function(){cur=1};
+
+var bbb=document.getElementById("o3");bbb.id={#rqm#}+"o3";
+document.getElementById(bbb.id).onclick =function(){cur=2};
+
+
+[[/jsxgraph]]
+<script>
+
+ </script>
+<script type="text/javascript">
+ var checkAnswer=[];
+ </script>
+</div>
+
+
+<table width="800">
+<tbody>
+  <tr>
+    <td style="text-align: center;">
+<div class="btn-group btn-group-toggle" data-toggle="buttons">
+  <label class="btn btn-secondary active">
+    <input type="radio" name="options" id="o1" autocomplete="off" checked="">1
+  </label>
+  <label class="btn btn-secondary">
+    <input type="radio" name="options" id="o2" autocomplete="off">2  
+  </label>
+  <label class="btn btn-secondary">
+    <input type="radio" name="options" id="o3" autocomplete="off">3
+  </label>
+</div>
+
+</td>
+  </tr>
+<tr>
+   <td style="text-align: center;">
+  <div class="btn-group" role="group" aria-label="molecule building buttons">
+  <button id="cx" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="מחיקה"><img src="{@ximg@}" width="50" height="50"></button>
+  <button id="cc" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="הוספת קשר יחיד"><img src="{@ccimg@}" width="100" height="50"></button>
+  <button id="cis" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="הוספת קשר כפול"><img src="{@cisimg@}" width="100" height="50"></button>
+  <button id="trans" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="הוספת קשר כפול"><img src="{@transimg@}" width="100" height="50"></button>
+  <button id="carb" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="הוספת קבוצה קרבוקסילית"><img src="{@carbox@}" width="80" height="80"></button>
+</div>
+  </td>
+  </tr>
+
+</tbody></table>
