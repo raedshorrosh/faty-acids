@@ -254,7 +254,20 @@ D.dispatchEvent(new Event('change'));
 board.update();
 
 }
+stack_js.get_content(rqm).then((content) => {
+if (content !== null) {
+// As the content is not null this means the span is present so feedback is displayed and we can react to it here
  
+if  ( !(answered)) {
+	
+ answered=true;
+let score=JSON.parse(content)[0];
+ if (score==1) {fdbk = '<span style="font-size: 1.5em; color:green;"> ✔</span> {#correct#}' }
+elseif (score ==0){fdbk ='<span style="font-size: 1.5em; color:red;"> ❌</span> {#incorrect#}'}
+esle {fdbk ='<span style="font-size: 1.5em; color:red;">◗</span> תשובה שגויה.'};
+  
+}}});
+
 var checkAnswer =function(points) {
 answered=true;
 if (points==1){score++}
@@ -273,24 +286,10 @@ if (score==3)
 //headbtnBS.rendNode.style.outline= "1px solid transparent";
 
 stack_js.register_external_button_listener("cx",xbtnf);
-//var bbb=document.getElementById("cx");bbb.id={#rqm#}+"cx";
-//document.getElementById(bbb.id).onclick =function(){xbtnf();board.update()};
-
 stack_js.register_external_button_listener("cc",ccbtnf);
-//var bbb=document.getElementById("cc");bbb.id={#rqm#}+"cc";
-//document.getElementById(bbb.id).onclick =function(){ccbtnf();board.update()};
-
 stack_js.register_external_button_listener("cis",cisbtnf);
-//var bbb=document.getElementById("cis");bbb.id={#rqm#}+"cis";
-//document.getElementById(bbb.id).onclick =function(){cisbtnf();board.update()};
-
 stack_js.register_external_button_listener("trans",transbtnf);
-//var bbb=document.getElementById("trans");bbb.id={#rqm#}+"trans";
-//document.getElementById(bbb.id).onclick =function(){transbtnf();board.update()};
-
 stack_js.register_external_button_listener("carb",headbtnf);
-//var bbb=document.getElementById("carb");bbb.id={#rqm#}+"carb";
-//document.getElementById(bbb.id).onclick =function(){headbtnf();board.update()};
 
 
 [[/jsxgraph]]
