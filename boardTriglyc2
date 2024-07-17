@@ -126,7 +126,7 @@ board.update();
 
 
 var addpoint = function() {
-if  (D[cur].value==''){ D[cur].value=JSON.stringify(Double[cur]);}
+if  (D[cur].value==''){ D[cur].value=JSON.stringify(Double[cur]);D[cur].dispatchEvent(new Event('change'));}
   var temp = (y[cur][y[cur].length - 1] == low[cur]) ? high[cur] : low[cur];
   var temp2 = x[cur][x[cur].length - 1] + 1;
   y[cur].push(temp);
@@ -309,15 +309,15 @@ var cislen=cis[cur].length;
 var translen=trans[cur].length;
 var rmvHead=false;
  removepoint();
-Carbon[cur].value=x[cur].length;
+Carbon[cur].value=x[cur].length;Carbon[cur].dispatchEvent(new Event('change'));
 if (x[cur].length ==cNo) {rmvHead=true};
 //if (x[cur].length !=cNo){Carbon[cur].value=x.length} else {rmvHead=true};
 
 if ((cislen!=cis[cur].length) || (translen!=trans[cur].length) || rmvHead){
      Double[cur].pop();
-     D[cur].value=JSON.stringify(Double[cur]);
+     D[cur].value=JSON.stringify(Double[cur]);D[cur].dispatchEvent(new Event('change'));
   }
- 
+ board.update();
 }
 
 //-------C-C--------  
@@ -325,8 +325,9 @@ var ccbtnf=function(){
 if (answered) {return};
 if (imgup[cur].getAttribute('visible')) {return};
 addpoint();
-if (Carbon[cur].value=='') {Carbon[cur].value=1};
-Carbon[cur].value++;
+if (Carbon[cur].value=='') {Carbon[cur].value=1;Carbon[cur].dispatchEvent(new Event('change'));};
+Carbon[cur].value++;Carbon[cur].dispatchEvent(new Event('change'));
+board.update();
 }  
 
 
@@ -336,10 +337,11 @@ if (answered) {return};
 if (imgup[cur].getAttribute('visible')) {return};
 addcis();
 
-   if (Carbon[cur].value=='') {Carbon[cur].value=1};
-   Carbon[cur].value++;
+   if (Carbon[cur].value=='') {Carbon[cur].value=1;Carbon[cur].dispatchEvent(new Event('change'));};
+   Carbon[cur].value++;Carbon[cur].dispatchEvent(new Event('change'));
    Double[cur].push([Carbon[cur].value-1,'cis']);
-   D[cur].value=JSON.stringify(Double[cur]);
+   D[cur].value=JSON.stringify(Double[cur]);   D[cur].dispatchEvent(new Event('change'));
+   board.update();
 }
 
   
@@ -348,10 +350,11 @@ addcis();
 if (answered) {return};
 if (imgup[cur].getAttribute('visible')) {return false};
 addtrans();
-  if (Carbon[cur].value=='') {Carbon[cur].value=1};
+  if (Carbon[cur].value=='') {Carbon[cur].value=1;Carbon[cur].dispatchEvent(new Event('change'));};
    Carbon[cur].value++;
    Double[cur].push([Carbon[cur].value-1,'trans']);
-   D[cur].value=JSON.stringify(Double[cur]);
+   D[cur].value=JSON.stringify(Double[cur]);D[cur].dispatchEvent(new Event('change'));
+board.update();
 }
   
 //-------head--------
@@ -361,12 +364,13 @@ if (answered) {return};
   if (imgup[cur].getAttribute('visible')) {return}
   mySound.play();
 
-setTimeout(function(){addpoint();Carbon[cur].value=x[cur].length;addhead()},600);
+setTimeout(function(){addpoint();Carbon[cur].value=x[cur].length;Carbon[cur].dispatchEvent(new Event('change'));addhead()},600);
   Double[cur].push(['COOC']);
-  D[cur].value=JSON.stringify(Double[cur]);
+  D[cur].value=JSON.stringify(Double[cur]); D[cur].dispatchEvent(new Event('change'));
+  board.update();
 }
  
-checkAnswer[{#rqm#}] =function(indx, mrk) {
+var checkAnswer[{#rqm#}] =function(indx, mrk) {
 Marks[indx]=Marks[indx]+mrk;
 answered=true;
 board.update();
@@ -377,37 +381,19 @@ board.update();
 //headbtnBS.rendNode.style.cursor='pointer';
 //headbtnBS.rendNode.style.outline= "1px solid transparent";
 
+stack_js.register_external_button_listener("cx{#rqm#}",xbtnf);
+stack_js.register_external_button_listener("cc{#rqm#}",ccbtnf);
+stack_js.register_external_button_listener("cis{#rqm#}",cisbtnf);
+stack_js.register_external_button_listener("trans{#rqm#}",transbtnf);
+stack_js.register_external_button_listener("carb{#rqm#}",headbtnf);
+stack_js.register_external_button_listener("o1{#rqm#}",function(){cur=0});
+stack_js.register_external_button_listener("o2{#rqm#}",function(){cur=1});
+stack_js.register_external_button_listener("o3{#rqm#}",function(){cur=2});
 
-var bbb=document.getElementById("cx");bbb.id={#rqm#}+"cx";
-document.getElementById(bbb.id).onclick =function(){xbtnf();board.update()};
-
-var bbb=document.getElementById("cc");bbb.id={#rqm#}+"cc";
-document.getElementById(bbb.id).onclick =function(){ccbtnf();board.update()};
-
-var bbb=document.getElementById("cis");bbb.id={#rqm#}+"cis";
-document.getElementById(bbb.id).onclick =function(){cisbtnf();board.update()};
-var bbb=document.getElementById("trans");bbb.id={#rqm#}+"trans";
-document.getElementById(bbb.id).onclick =function(){transbtnf();board.update()};
-var bbb=document.getElementById("carb");bbb.id={#rqm#}+"carb";
-document.getElementById(bbb.id).onclick =function(){headbtnf();board.update()};
-
-var bbb=document.getElementById("o1");bbb.id={#rqm#}+"o1";
-document.getElementById(bbb.id).onclick =function(){cur=0};
-
-var bbb=document.getElementById("o2");bbb.id={#rqm#}+"o2";
-document.getElementById(bbb.id).onclick =function(){cur=1};
-
-var bbb=document.getElementById("o3");bbb.id={#rqm#}+"o3";
-document.getElementById(bbb.id).onclick =function(){cur=2};
 
 
 [[/jsxgraph]]
-<script>
 
- </script>
-<script type="text/javascript">
- var checkAnswer=[];
- </script>
 </div>
 
 
@@ -417,13 +403,13 @@ document.getElementById(bbb.id).onclick =function(){cur=2};
     <td style="text-align: center;">
 <div class="btn-group btn-group-toggle" data-toggle="buttons">
   <label class="btn btn-secondary active">
-    <input type="radio" name="options" id="o1" autocomplete="off" checked="">1
+    <input type="radio" name="options" id="o1{#rqm#}" autocomplete="off" checked="">1
   </label>
   <label class="btn btn-secondary">
-    <input type="radio" name="options" id="o2" autocomplete="off">2  
+    <input type="radio" name="options" id="o2{#rqm#}" autocomplete="off">2  
   </label>
   <label class="btn btn-secondary">
-    <input type="radio" name="options" id="o3" autocomplete="off">3
+    <input type="radio" name="options" id="o3{#rqm#}" autocomplete="off">3
   </label>
 </div>
 
@@ -432,11 +418,11 @@ document.getElementById(bbb.id).onclick =function(){cur=2};
 <tr>
    <td style="text-align: center;">
   <div class="btn-group" role="group" aria-label="molecule building buttons">
-  <button id="cx" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="מחיקה"><img src="{@ximg@}" width="50" height="50"></button>
-  <button id="cc" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="הוספת קשר יחיד"><img src="{@ccimg@}" width="100" height="50"></button>
-  <button id="cis" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="הוספת קשר כפול"><img src="{@cisimg@}" width="100" height="50"></button>
-  <button id="trans" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="הוספת קשר כפול"><img src="{@transimg@}" width="100" height="50"></button>
-  <button id="carb" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="הוספת קבוצה קרבוקסילית"><img src="{@carbox@}" width="80" height="80"></button>
+  <button id="cx{#rqm#}" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="מחיקה"><img src="{@ximg@}" width="50" height="50"></button>
+  <button id="cc{#rqm#}" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="הוספת קשר יחיד"><img src="{@ccimg@}" width="100" height="50"></button>
+  <button id="cis{#rqm#}" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="הוספת קשר כפול"><img src="{@cisimg@}" width="100" height="50"></button>
+  <button id="trans{#rqm#}" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="הוספת קשר כפול"><img src="{@transimg@}" width="100" height="50"></button>
+  <button id="carb{#rqm#}" type="button" class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="הוספת קבוצה קרבוקסילית"><img src="{@carbox@}" width="80" height="80"></button>
 </div>
   </td>
   </tr>
