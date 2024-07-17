@@ -263,9 +263,9 @@ if  ( !(answered)) {
  answered=true;
 let score=JSON.parse(content)[0];
  if (score==1) {fdbk = '<span style="font-size: 1.5em; color:green;"> ✔</span> {#correct#}' }
-elseif (score ==0){fdbk ='<span style="font-size: 1.5em; color:red;"> ❌</span> {#incorrect#}'}
-esle {fdbk ='<span style="font-size: 1.5em; color:red;">◗</span> תשובה שגויה.'};
-  
+else if (score ==0){fdbk ='<span style="font-size: 1.5em; color:red;"> ❌</span> {#incorrect#}'}
+else {fdbk ='<span style="font-size: 1.5em; color:red;">◗</span> תשובה שגויה.'};
+board.update();  
 }}});
 
 var checkAnswer =function(points) {
