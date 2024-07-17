@@ -257,12 +257,10 @@ board.update();
 stack_js.get_content({#rqm#}).then((content) => {
 if (content !== null) {
 // As the content is not null this means the span is present so feedback is displayed and we can react to it here
- 
 if  ( !(answered)) {
-	
  answered=true;
 let score=JSON.parse(content)[0];
- if (score==1) {fdbk = '<span style="font-size: 1.5em; color:green;"> ✔</span> {#correct#}' }
+ if (score==2) {fdbk = '<span style="font-size: 1.5em; color:green;"> ✔</span> {#correct#}' }
 else if (score ==0){fdbk ='<span style="font-size: 1.5em; color:red;"> ❌</span> {#incorrect#}'}
 else {fdbk ='<span style="font-size: 1.5em; color:red;">◗</span> תשובה שגויה.'};
 board.update();  
