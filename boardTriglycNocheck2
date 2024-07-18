@@ -239,10 +239,5 @@ cur=j;
 }
 board.update();  
 
-
-}
-
-
-
 [[/jsxgraph]]
 <!---->
