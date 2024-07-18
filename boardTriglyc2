@@ -101,7 +101,7 @@ if ({#showLength#}=='yes'){  var t1 = board.create('text',[15,0,function(){retur
 
 var MarkTxt0 = board.create('text', [function(){return (x[0][0]-1.5)},low[0], function() {
   if (!answered) return '';
-  if (Marks[0] == 1)  return {#cMark#}
+  if (Marks[0] ==2)  return {#cMark#}
 else if (isless(0,Marks[0]) ) return {#pMark#}
 else 
   return {#wMark#}
@@ -109,7 +109,7 @@ else
 
 var MarkTxt1 = board.create('text', [function(){return x[1][0]-1.5}, low[1], function() {
   if (!answered) return '';
-  if (Marks[1] == 1)  return {#cMark #}
+  if (Marks[1] ==2)  return {#cMark #}
 else if (isless(0,Marks[1]) ) return {#pMark#}
 else 
   return {#wMark#}
@@ -117,7 +117,7 @@ else
 
 var MarkTxt2 = board.create('text',[ function(){return x[2][0]-1.5}, low[2], function() {
   if (!answered) return '';
-  if (Marks[2] == 1)  return {#cMark #}
+  if (Marks[2] == 2)  return {#cMark #}
 else if (isless(0,Marks[2]) ) return {#pMark#}
 else 
   return {#wMark#}
