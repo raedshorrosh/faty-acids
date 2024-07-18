@@ -369,7 +369,34 @@ setTimeout(function(){addpoint();Carbon[cur].value=x[cur].length;Carbon[cur].dis
   D[cur].value=JSON.stringify(Double[cur]); D[cur].dispatchEvent(new Event('change'));
   board.update();
 }
- 
+
+stack_js.get_content({#rqm#}+"a").then((content) => {
+if (content !== null) {
+// As the content is not null this means the span is present so feedback is displayed and we can react to it here
+if  ( !(answered)) {
+ answered=true;
+Marks[0]=JSON.parse(content)[0];
+board.update();  
+}}}); 
+stack_js.get_content({#rqm#}+"b").then((content) => {
+if (content !== null) {
+// As the content is not null this means the span is present so feedback is displayed and we can react to it here
+if  ( !(answered)) {
+ answered=true;
+Marks[1]=JSON.parse(content)[0];
+board.update();  
+}}}); 
+
+stack_js.get_content({#rqm#}+"c").then((content) => {
+if (content !== null) {
+// As the content is not null this means the span is present so feedback is displayed and we can react to it here
+if  ( !(answered)) {
+ answered=true;
+Marks[2]=JSON.parse(content)[0];
+board.update();  
+}}}); 
+
+
 var checkAnswer=function(indx, mrk) {
 Marks[indx]=Marks[indx]+mrk;
 answered=true;
