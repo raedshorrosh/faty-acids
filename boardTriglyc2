@@ -39,7 +39,7 @@ var board = JXG.JSXGraph.initBoard(divid, {
   return -1;
   }
 
-var answered=false;
+var answered=false,answered1=false,answered2=false,answered3=false;
 var cur=0;
 var left = -13;
 var low=[],high=[],Marks=[0,0,0],Marktxt=['','',''];
@@ -77,9 +77,9 @@ var imgtri= board.create('image', [trimg, [15,1.3], [2.7,18]],{visible:true, fix
 
 var Double=[[],[],[]],Carbon=[],D=[];
 var hyd=[];
-  hyd[0]=board.create('text',[13.9,low[0]-1.4,'H'],{fontSize: 36, color:'red',anchorY:'bottom',anchorX:'left',fixed:true,visible:true});
-  hyd[1]=board.create('text',[13.9,low[1]-1.4,'H'],{fontSize: 36, color:'red',anchorY:'bottom',anchorX:'left',fixed:true,visible:true});
-  hyd[2]=board.create('text',[13.9,low[2]-1.4,'H'],{fontSize: 36, color:'red',anchorY:'bottom',anchorX:'left',fixed:true,visible:true});
+  hyd[0]=board.create('text',[13.9,low[0]-1.35,'H'],{fontSize: 36, color:'red',anchorY:'bottom',anchorX:'left',fixed:true,visible:true});
+  hyd[1]=board.create('text',[13.9,low[1]-1.35,'H'],{fontSize: 36, color:'red',anchorY:'bottom',anchorX:'left',fixed:true,visible:true});
+  hyd[2]=board.create('text',[13.9,low[2]-1.35,'H'],{fontSize: 36, color:'red',anchorY:'bottom',anchorX:'left',fixed:true,visible:true});
   
  
 Carbon[0]=document.getElementById(carbon1Ref);
@@ -373,8 +373,8 @@ setTimeout(function(){addpoint();Carbon[cur].value=x[cur].length;Carbon[cur].dis
 stack_js.get_content({#rqm#}+"a").then((content) => {
 if (content !== null) {
 // As the content is not null this means the span is present so feedback is displayed and we can react to it here
-if  ( !(answered)) {
- answered=true;
+if  ( !(answered1)) {
+      answered1=true;
 Marks[0]=JSON.parse(content)[0];
 console.log(Marks[0]);
 board.update();  
@@ -382,8 +382,8 @@ board.update();
 stack_js.get_content({#rqm#}+"b").then((content) => {
 if (content !== null) {
 // As the content is not null this means the span is present so feedback is displayed and we can react to it here
-if  ( !(answered)) {
- answered=true;
+if  ( !(answered2)) {
+answered2=true;
 Marks[1]=JSON.parse(content)[0];
 console.log(Marks[1]);
 board.update();  
@@ -392,7 +392,8 @@ board.update();
 stack_js.get_content({#rqm#}+"c").then((content) => {
 if (content !== null) {
 // As the content is not null this means the span is present so feedback is displayed and we can react to it here
-if  ( !(answered)) {
+if  ( !(answered3)) {
+ answered3=true;
  answered=true;
 Marks[2]=JSON.parse(content)[0];
 console.log(Marks[2]);
