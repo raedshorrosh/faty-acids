@@ -25,12 +25,11 @@ var board = JXG.JSXGraph.initBoard(divid, {
 var answered=false;
 var cur=0;
 var left = -13;
-var low=[],high=[],Marks=[0,0,0],Marktxt=['','',''];
+var low=[],high=[];
 
 low[0] =19; low[1]=10.5 ;low[2]=2;
 high[0] = low[0]+2;high[1] = low[1]+2;high[2] = low[2]+2;
-  
-var cMark={#cMark#},wMark={#wMark#};
+
 var x=[],y=[];
 x[0]=[left];x[1]=[left];x[2]=[left];
 y[0]=[];y[1]=[];y[2]=[];
@@ -241,10 +240,6 @@ cur=j;
 board.update();  
 
 
-checkAnswer[{#rqm#}] =function(indx, mrk) {
-Marks[indx]=Marks[indx]+mrk;
-answered=true;
-board.update();
 }
 
 
